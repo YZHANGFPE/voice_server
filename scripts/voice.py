@@ -68,12 +68,13 @@ class VoiceServer:
                 string = str(self.dict[message])
             music_stream_uri = 'file://' + self.mp3_folder + string + '.mp3'
 
-        self.run()
-        self.playing = True
-        self.player.set_state(gst.STATE_NULL)
-        self.player.set_property('uri',music_stream_uri)
-        self.player.set_state(gst.STATE_PLAYING)
-        self.block()
+        # self.run()
+        # self.playing = True
+        # self.player.set_state(gst.STATE_NULL)
+        # self.player.set_property('uri',music_stream_uri)
+        # self.player.set_state(gst.STATE_PLAYING)
+        # self.block()
+        rospy.loginfo("Voice service not available")
 
     def run(self):
         """Start a new thread for the player.
