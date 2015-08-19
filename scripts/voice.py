@@ -57,7 +57,7 @@ class VoiceServer:
 
 
     def speak(self, message):
-
+        message = message.rstrip()
         if not self.local: 
             music_stream_uri = 'http://translate.google.com/translate_tts?tl=en&q=' + message
         else: 
@@ -68,13 +68,13 @@ class VoiceServer:
                 string = str(self.dict[message])
             music_stream_uri = 'file://' + self.mp3_folder + string + '.mp3'
 
-        # self.run()
-        # self.playing = True
-        # self.player.set_state(gst.STATE_NULL)
-        # self.player.set_property('uri',music_stream_uri)
-        # self.player.set_state(gst.STATE_PLAYING)
-        # self.block()
-        rospy.loginfo("Voice service not available")
+        self.run()
+        self.playing = True
+        self.player.set_state(gst.STATE_NULL)
+        self.player.set_property('uri',music_stream_uri)
+        self.player.set_state(gst.STATE_PLAYING)
+        self.block()
+        # rospy.loginfo("Voice service not available")
 
     def run(self):
         """Start a new thread for the player.
@@ -99,10 +99,10 @@ def main():
 
     
     if len(sys.argv) < 2:
-        local = False
+        local = True
     else:
-        if sys.argv[1] == '--local': local = True
-        else: local = False
+        if sys.argv[1] == '--web': local = False
+        else: local = True
 
     rospy.init_node('voice_server', anonymous=True)
     vs = VoiceServer(local)
