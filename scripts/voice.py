@@ -58,6 +58,7 @@ class VoiceServer:
 
     def speak(self, message):
         message = message.rstrip()
+        rospy.loginfo("The message is: %s" % message)
         if not self.local: 
             music_stream_uri = 'http://translate.google.com/translate_tts?tl=en&q=' + message
         else: 
