@@ -3,13 +3,13 @@ import sys
 import rospy
 from voice_server.srv import Voice
 
-def voice_client():
+def voice_client(Sen):
     rospy.wait_for_service('voice')
     try:
         speak = rospy.ServiceProxy('voice', Voice)
-        speak("Tomorrow is another day!")
+        speak(Sen)
     except rospy.ServiceException, e:
         print "Service call failed: %s"%e
 
 if __name__ == "__main__":
-    voice_client()
+    voice_client(sys.argv[1])
