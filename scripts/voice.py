@@ -65,6 +65,7 @@ class VoiceServer:
             if not message in self.dict:
                 string = 'hello_baxter'
                 rospy.logwarn("The local stream file is not found")
+                return
             else:
                 string = str(self.dict[message])
             music_stream_uri = 'file://' + self.mp3_folder + string + '.mp3'
