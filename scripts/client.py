@@ -7,7 +7,7 @@ def voice_client():
     rospy.wait_for_service('voice')
     try:
         speak = rospy.ServiceProxy('voice', Voice)
-        speak("Tomorrow is another day!")
+        speak("Please pour a bit more!")
     except rospy.ServiceException, e:
         print "Service call failed: %s"%e
 
